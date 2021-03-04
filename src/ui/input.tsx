@@ -1,39 +1,72 @@
 import styled from '@emotion/styled';
-import { spaceSet, width } from 'onno-react';
+import {
+  flex,
+  FlexProps,
+  height,
+  HeightProps,
+  spaceSet,
+  SpaceSetProps,
+  width,
+  WidthProps,
+} from 'onno-react';
 
 import th from 'ui/theme';
 
-const TextInput = styled.input(
-  {
-    background: 'transparent',
-    border: 0,
-    borderRadius: th.borderRadii.default,
-    color: th.colors.text.default,
-    fontFamily: th.fontFamilies.body,
-    fontSize: th.fontSizes.body,
-    height: th.sizes.fill,
-    left: 0,
-    outline: 'none',
-    position: 'absolute',
-    top: 0,
-    transition: th.transitions.default,
-    ':hover': {
-      '::placeholder': {
-        color: th.colors.brand.secondary,
-      },
-    },
+const inputStyles: any = {
+  background: th.colors.white,
+  borderRadius: th.borderRadii.default,
+  color: th.colors.text.default,
+  fontFamily: th.fontFamilies.body,
+  fontSize: th.fontSizes.body,
+  height: th.heights.input,
+  outline: 'none',
+  padding: `0 ${th.spacing.sm}`,
+  transition: th.transitions.default,
+  width: th.sizes.fill,
+  ':hover': {
     '::placeholder': {
-      color: th.colors.brand.secondaryDisabled,
-      transition: th.transitions.default,
-    },
-    ':focus': {
-      '::placeholder': {
-        color: th.colors.brand.secondary,
-      },
+      color: th.colors.brand.secondary,
     },
   },
+  '::placeholder': {
+    color: th.colors.brand.secondaryDisabled,
+    transition: th.transitions.default,
+  },
+  ':focus': {
+    '::placeholder': {
+      color: th.colors.brand.secondary,
+    },
+  },
+};
+
+interface ErrorProps {
+  error?: boolean | string;
+}
+
+type InputProps = ErrorProps &
+  FlexProps &
+  HeightProps &
+  SpaceSetProps &
+  WidthProps;
+
+const withError = ({ error }: ErrorProps) => ({
+  border: error ? th.borders.error : th.borders.input,
+});
+
+const TextArea = styled.textarea<InputProps>(
+  inputStyles,
+  withError,
+  height,
   spaceSet,
   width,
 );
 
-export default TextInput;
+const TextInput = styled.input<InputProps>(
+  inputStyles,
+  withError,
+  flex,
+  spaceSet,
+  width,
+);
+
+export default { TextArea, TextInput };

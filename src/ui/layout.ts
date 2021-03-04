@@ -24,6 +24,8 @@ import {
   SizeProps,
   spaceSet,
   SpaceSetProps,
+  textSet,
+  TextSetProps,
   transformSet,
   TransformSetProps,
   transition,
@@ -107,7 +109,9 @@ export type DivProps = BackgroundSetProps &
   OverflowSetProps &
   PositionSetProps &
   SpaceSetProps &
+  TextSetProps &
   TransformSetProps &
+  TransitionProps &
   CustomDivProps;
 
 export const divPropsSet = [
@@ -121,7 +125,9 @@ export const divPropsSet = [
   overflowSet,
   positionSet,
   spaceSet,
+  textSet,
   transformSet,
+  transition,
   customOptions,
 ];
 
@@ -139,6 +145,7 @@ const Grid = styled(Div)(
 
 export const Anchor = styled.a<DivProps>(
   {
+    textDecoration: 'none',
     ':link': {
       color: th.colors.text.link,
     },
@@ -162,12 +169,10 @@ export type ImgProps = HeightProps &
   WidthProps;
 const Img = styled.img<ImgProps>(height, size, spaceSet, transition, width);
 
-const GalleryWrapper = styled(Div)(
+const PageContent = styled(Div)(
   {
-    display: 'block',
-    minHeight: '1px',
-    overflow: 'auto',
-    width: '100%',
+    margin: `${th.spacing.xl} auto`,
+    maxWidth: th.widths.maxContent,
   },
   divPropsSet,
 );
@@ -177,8 +182,8 @@ export default {
   Anchor,
   Div,
   Flex,
-  GalleryWrapper,
   Grid,
   Img,
+  PageContent,
   Span,
 };

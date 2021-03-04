@@ -98,11 +98,16 @@ const LargeText = textComponent('large');
 const DisplayText = textComponent('display');
 const HugeText = textComponent('huge');
 
+const ContentText = styled(BodyText)<TextProps>(
+  { ...th.textStyles.body, lineHeight: 2 },
+  textPropsSet,
+);
 const TitleText = styled.h1<TextProps>(th.textStyles.title, textPropsSet);
 
 export default {
   BodyText,
   CaptionText,
+  ContentText,
   DisplayText,
   HugeText,
   LargeText,

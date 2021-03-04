@@ -1,9 +1,17 @@
 import './fonts.css';
-import { DESKTOP, SMALL, TABLET, TABLET_DOWN, TABLET_UP, TINY } from './utils';
+import {
+  DESKTOP,
+  hexColorWithTransparency,
+  SMALL,
+  TABLET,
+  TABLET_DOWN,
+  TABLET_UP,
+  TINY,
+} from './utils';
 
 export const colors = {
   background: '#FFFFFF',
-  black: '#000000',
+  black: hexColorWithTransparency('#000000', 0.8),
   white: '#FFFFFF',
   lightGray: '#F9F9F9',
   mediumGray: '#858585',
@@ -14,7 +22,7 @@ export const colors = {
     secondaryDisabled: '#2C5F95',
   },
   text: {
-    default: '#000000',
+    default: hexColorWithTransparency('#000000', 0.8),
     link: '#2C5F95',
     inv: '#FFFFFF',
   },
@@ -33,7 +41,7 @@ export const colors = {
 // Layout
 export const heights = {
   input: 40,
-  nav: 100,
+  nav: 116,
 };
 
 export const sizes = {
@@ -92,7 +100,9 @@ export const lineHeights = { single: 1, heading: 1.25, main: 1.5 };
 // Display
 export const borders = {
   black: `1px solid ${colors.black}`,
+  white: `1px solid ${colors.white}`,
   error: `1px solid ${colors.status.error}`,
+  input: `1px solid ${colors.mediumGray}`,
   primary: `1px solid ${colors.brand.primary}`,
   secondary: `1px solid ${colors.brand.secondary}`,
   transparent: '1px solid transparent',
@@ -113,7 +123,8 @@ export const breakpointQueries = {
 export const opacities = { disabled: 0.6, secondary: 0.8 };
 
 export const shadows = {
-  box: `${colors.lightGray} 0px 5px 15px`,
+  box: `0px 2px 10px ${colors.overlay.medium} `,
+  nav: `0 10px 6px -4px ${colors.overlay.light}`,
 };
 
 export const transitions = {
@@ -122,7 +133,7 @@ export const transitions = {
 
 export const scrollOptions = {
   duration: 300,
-  offset: -100,
+  offset: -200,
   smooth: 'true',
 };
 
@@ -174,6 +185,7 @@ export const globalStyles = {
     ...textStyles.common,
     ...textStyles.title,
     fontFamily: fontFamilies.header,
+    margin: 0,
   },
   p: {
     ...textStyles.common,

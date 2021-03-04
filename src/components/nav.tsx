@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import LogoImg from 'assets/images/logo.png';
+import { CONTACT_FORM_ID } from 'components/quote-form';
 import SocialIcons from 'components/social-icons';
 import b from 'ui/button';
 import l from 'ui/layout';
@@ -53,7 +54,7 @@ export interface NavItemProps {
   to: string;
 }
 
-const NavItem = ({ active, text, to }: NavItemProps) => (
+export const NavItem = ({ active, text, to }: NavItemProps) => (
   <StyledNavItem active={active} to={to}>
     <ty.DisplayText fontSize={th.fontSizes.large}>{text}</ty.DisplayText>
   </StyledNavItem>
@@ -61,8 +62,10 @@ const NavItem = ({ active, text, to }: NavItemProps) => (
 
 const Wrapper = styled(l.Flex)({
   background: th.colors.background,
+  boxShadow: th.shadows.nav,
   left: 0,
-  padding: `${th.spacing.sm} ${th.spacing.md}`,
+  height: th.heights.nav,
+  padding: `0 ${th.spacing.md}`,
   position: 'fixed',
   right: 0,
   top: 0,
@@ -75,12 +78,12 @@ const Nav = ({ location: { pathname } }: RouteComponentProps) => (
       <l.Img height={th.sizes.xl} src={LogoImg} />
     </l.AreaLink>
     <l.Flex alignEnd column justifyBetween>
-      <SocialIcons />
+      <SocialIcons size={th.sizes.icon} />
       <l.Flex alignCenter alignSelf="flex-end">
         {navItems.map((item, idx) => (
-          <NavItem active={pathname.includes(item.to)} key={idx} {...item} />
+          <NavItem active={pathname === item.to} key={idx} {...item} />
         ))}
-        <l.AreaLink ml={th.spacing.md} to="/contact">
+        <l.AreaLink ml={th.spacing.md} to={`/contact?id=${CONTACT_FORM_ID}`}>
           <b.Primary>Get Quote</b.Primary>
         </l.AreaLink>
       </l.Flex>
