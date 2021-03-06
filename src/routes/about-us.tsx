@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 
 import { ASSETS_PATH } from 'api';
 import Heading from 'components/heading';
-import Hero from 'components/hero';
-import PageNav from 'components/page-nav';
+import Hero from 'components/page/hero';
+import PageNav from 'components/page/links';
 import useScroll from 'hooks/use-scroll';
 import l from 'ui/layout';
 import th from 'ui/theme';
@@ -28,12 +28,17 @@ const AboutUs = () => {
   useScroll();
   return (
     <l.Div>
-      <Hero text="About Us" />
+      <Hero imageSrc={`${ASSETS_PATH}/events.png`} text="About Us" />
       <l.PageContent>
         <PageNav items={navItems} />
         <Heading id="principles" text="Principles Of Our Work" />
-        <l.Flex justifyBetween mb={th.spacing.xxl} mt={th.spacing.xl}>
-          <l.Div width="45%">
+        <l.Flex
+          columnOnMobile
+          justifyBetween
+          mb={th.spacing.xxl}
+          mt={th.spacing.xl}
+        >
+          <l.Div width={[th.sizes.fill, '45%']}>
             <ty.ContentText>
               At Shooting Star Productions we understand that all of our clients
               have different styles, needs, and requirements. We have proven
@@ -60,8 +65,11 @@ const AboutUs = () => {
               brand and reputation with care in everything we create.
             </ty.ContentText>
           </l.Div>
-          <l.Div width="45%">
-            <l.Img width="80%" src={`${ASSETS_PATH}/nic.png`} />
+          <l.Div mt={[th.spacing.xl, 0]} width={[th.sizes.fill, '45%']}>
+            <l.Img
+              src={`${ASSETS_PATH}/nic.png`}
+              width={[th.sizes.fill, '80%'] as any}
+            />
             <ty.LargeText bold mt={th.spacing.xl}>
               Innovation
             </ty.LargeText>
@@ -76,10 +84,12 @@ const AboutUs = () => {
         <l.Div height={th.spacing.xl} />
         {teamMembers.map(({ bio, name, photoSrc, title }, idx) => (
           <Fragment key={idx}>
-            <l.Flex justifyBetween>
-              <l.Img height={th.spacing.xxxl} src={photoSrc} />
-              <l.Div ml={th.spacing.xl}>
-                <ty.DisplayText mb={th.spacing.md}>{name}</ty.DisplayText>
+            <l.Flex columnOnMobile justifyBetween>
+              <l.Img height={['auto', th.spacing.xxxl] as any} src={photoSrc} />
+              <l.Div ml={[0, th.spacing.xl]}>
+                <ty.DisplayText mb={th.spacing.md} mt={[th.spacing.md, 0]}>
+                  {name}
+                </ty.DisplayText>
                 <ty.LargeText mb={th.spacing.lg}>{title}</ty.LargeText>
                 <ty.ContentText mb={th.spacing.md}>{bio}</ty.ContentText>
               </l.Div>
@@ -93,7 +103,7 @@ const AboutUs = () => {
             />
           </Fragment>
         ))}
-        <l.Div height={th.spacing.xxl} />
+        <l.Div height={[th.spacing.xl, th.spacing.xxl]} />
       </l.PageContent>
     </l.Div>
   );

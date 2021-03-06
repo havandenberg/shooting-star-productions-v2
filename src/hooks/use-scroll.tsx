@@ -15,7 +15,7 @@ const useScroll = (options?: {}) => {
   useEffect(() => {
     if (location) {
       const id = parse(location.search)['?id'];
-      scrollToId(id ? `${id}` : 'top', options);
+      scrollToId(id ? `${id}` : 'main', options);
     }
   }, [location, options]);
 };

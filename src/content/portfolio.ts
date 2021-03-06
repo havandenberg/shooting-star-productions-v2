@@ -27,7 +27,7 @@ export const featuredPortfolio: PortfolioItem[] = [
 
 const portfolio: PortfolioItem[] = [
   {
-    id: 'corp-1',
+    id: 'corporate',
     category: 'Corporate',
     posterSrc: `${ASSETS_PATH}/auto.png`,
     videoSrc: `${ASSETS_PATH}/auto.m4v`,
@@ -46,6 +46,27 @@ const portfolio: PortfolioItem[] = [
     posterSrc: `${ASSETS_PATH}/auto.png`,
     videoSrc: `${ASSETS_PATH}/auto.m4v`,
     title: 'Sales #1',
+  },
+  {
+    id: 'fitness',
+    category: 'Fitness',
+    posterSrc: `${ASSETS_PATH}/auto.png`,
+    videoSrc: `${ASSETS_PATH}/auto.m4v`,
+    title: 'Fitness #1',
+  },
+  {
+    id: 'wedding',
+    category: 'Wedding',
+    posterSrc: `${ASSETS_PATH}/auto.png`,
+    videoSrc: `${ASSETS_PATH}/auto.m4v`,
+    title: 'Wedding #1',
+  },
+  {
+    id: 'about-us',
+    category: 'About Us',
+    posterSrc: `${ASSETS_PATH}/auto.png`,
+    videoSrc: `${ASSETS_PATH}/auto.m4v`,
+    title: 'About Us #1',
   },
 ];
 

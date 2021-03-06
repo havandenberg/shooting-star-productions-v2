@@ -4,23 +4,52 @@ import { capitalCase, paramCase } from 'change-case';
 import { pluck, uniq } from 'ramda';
 import { useLocation, useParams } from 'react-router-dom';
 
+import { ASSETS_PATH } from 'api';
 import PlayImg from 'assets/images/play';
 import Heading from 'components/heading';
-import Hero from 'components/hero';
+import Hero from 'components/page/hero';
 import Modal from 'components/modal';
-import { NavItem } from 'components/nav';
-import PageNav from 'components/page-nav';
+import PageNav from 'components/page/links';
 import brands from 'content/brands';
 import portfolioItems from 'content/portfolio';
 import useScroll from 'hooks/use-scroll';
 import l from 'ui/layout';
 import th from 'ui/theme';
 import ty from 'ui/typography';
+import { isMobile } from 'ui/utils';
 
 const navItems = [
   { id: 'recent-work', text: 'Recent Work' },
   { id: 'clients', text: 'Clients' },
 ];
+
+const StyledNavItem = styled(l.AreaLink)(
+  ({ active }: { active?: boolean }) => ({
+    p: {
+      color: active ? th.colors.brand.primary : th.colors.text.default,
+      padding: th.spacing.sm,
+    },
+    transition: th.transitions.default,
+    width: 'auto',
+    ':hover': {
+      p: {
+        color: th.colors.brand.primary,
+      },
+    },
+  }),
+);
+
+export interface NavItemProps {
+  active?: boolean;
+  text: string;
+  to: string;
+}
+
+export const NavItem = ({ active, text, to }: NavItemProps) => (
+  <StyledNavItem active={active} to={to}>
+    <ty.DisplayText fontSize={th.fontSizes.body}>{text}</ty.DisplayText>
+  </StyledNavItem>
+);
 
 export interface PortfolioItem {
   id: string;
@@ -51,11 +80,12 @@ export const PortfolioTile = ({
           column
           cursor="pointer"
           height={275}
+          mb={th.spacing.lg}
           onClick={show}
           onMouseEnter={toggleHover(true)}
           onMouseLeave={toggleHover(false)}
           overflow="hidden"
-          width={287}
+          width={[th.sizes.fill, 287]}
         >
           <l.Div flex={1} mb={th.spacing.md} position="relative">
             <l.Img src={posterSrc} width={th.sizes.fill} />
@@ -93,11 +123,15 @@ export const PortfolioTile = ({
 
 export const PortfolioWrapper = styled(l.Flex)({
   background: th.colors.lightGray,
+  flexWrap: 'wrap',
   justifyContent: 'space-between',
-  marginBottom: th.spacing.xxl,
   marginTop: th.spacing.lg,
   padding: th.spacing.lg,
-  width: th.sizes.fill,
+  paddingBottom: 0,
+  [th.breakpointQueries.small]: {
+    flexDirection: 'column',
+    margin: `0 -${th.spacing.md}`,
+  },
 });
 
 const Portfolio = () => {
@@ -109,25 +143,25 @@ const Portfolio = () => {
   );
   return (
     <l.Div>
-      <Hero text="Portfolio" />
+      <Hero imageSrc={`${ASSETS_PATH}/events.png`} text="Portfolio" />
       <l.PageContent>
         <PageNav items={navItems} />
-        <l.Flex flexWrap="wrap" id="recent-work">
+        <l.Flex flexWrap="wrap" id="recent-work" mb={[th.spacing.md, 0]}>
           <NavItem
             active={pathname === '/portfolio'}
             key="all"
             text="All"
-            to={`/portfolio`}
+            to="/portfolio?id=recent-work"
           />
           {categories.map((category) => {
             const to = paramCase(category);
             return (
               <Fragment key={category}>
-                <l.Div width={th.spacing.md} />
+                <l.Div width={[0, th.spacing.md]} />
                 <NavItem
                   active={pathname.includes(to)}
                   text={category}
-                  to={`/portfolio/${to}`}
+                  to={`/portfolio/${to}?id=recent-work`}
                 />
               </Fragment>
             );
@@ -138,17 +172,27 @@ const Portfolio = () => {
             <PortfolioTile key={item.id} {...item} />
           ))}
         </PortfolioWrapper>
+        <l.Div height={th.spacing.xxl} />
         <Heading id="clients" text="Clients" />
         <l.Flex
+          alignCenter={isMobile()}
+          columnOnMobile
+          flexWrap="wrap"
           justifyBetween
           mb={th.spacing.xxl}
           mt={th.spacing.lg}
           mx="auto"
           p={th.spacing.lg}
+          pb={0}
           width="80%"
         >
           {brands.map((brandSrc, idx) => (
-            <l.Img height={th.sizes.xl} key={idx} src={brandSrc} />
+            <l.Img
+              height={th.sizes.xl}
+              key={idx}
+              mb={th.spacing.lg}
+              src={brandSrc}
+            />
           ))}
         </l.Flex>
       </l.PageContent>

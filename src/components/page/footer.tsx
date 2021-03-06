@@ -6,17 +6,28 @@ import SocialIcons from 'components/social-icons';
 import l from 'ui/layout';
 import th from 'ui/theme';
 import ty from 'ui/typography';
+import { isMobile } from 'ui/utils';
 
 const Footer = () => (
   <>
     <l.Flex bg={th.colors.mediumGray} p={th.spacing.lg}>
-      <l.Flex justifyBetween width={th.widths.maxContent} mx="auto">
+      <l.Flex
+        columnOnMobile
+        justifyBetween
+        width={th.widths.maxContent}
+        mx="auto"
+        pb={[th.spacing.xxl, 0]}
+      >
         <l.Flex column alignStart>
           <l.AreaLink to="/">
-            <l.Img height={th.sizes.xl} src={LogoImg} />
+            <l.Img
+              height={['auto', th.sizes.xl] as any}
+              src={LogoImg}
+              width={[th.sizes.fill, 'auto'] as any}
+            />
           </l.AreaLink>
-          <l.Div mt={th.spacing.lg}>
-            <l.Flex>
+          <l.Div mt={th.spacing.lg} width={[th.sizes.fill, 'auto']}>
+            <l.Flex ml={[th.spacing.md, 0]}>
               <ty.BodyText
                 inverted
                 mr={th.spacing.xl}
@@ -32,7 +43,7 @@ const Footer = () => (
               </l.Anchor>
             </l.Flex>
             <l.Div height={th.spacing.md} />
-            <l.Flex>
+            <l.Flex ml={[th.spacing.md, 0]}>
               <ty.BodyText
                 inverted
                 mr={th.spacing.xl}
@@ -48,7 +59,7 @@ const Footer = () => (
               </l.AreaLink>
             </l.Flex>
             <l.Div height={th.spacing.md} />
-            <l.Flex>
+            <l.Flex ml={[th.spacing.md, 0]}>
               <ty.BodyText
                 inverted
                 mr={th.spacing.lg}
@@ -68,7 +79,7 @@ const Footer = () => (
               </l.Anchor>
             </l.Flex>
             <l.Div height={th.spacing.md} />
-            <l.Flex>
+            <l.Flex ml={[th.spacing.md, 0]}>
               <ty.BodyText
                 inverted
                 mr={th.spacing.lg}
@@ -78,16 +89,20 @@ const Footer = () => (
                 Hours:
               </ty.BodyText>
               <ty.BodyText inverted secondary>
-                Monday - Friday, 8am - 5pm
+                Monday - Friday,{isMobile() && <br />} 8:00am - 5:00pm
               </ty.BodyText>
             </l.Flex>
-            <l.Div mt={th.spacing.lg}>
+            <l.Flex
+              justifyCenter
+              mt={[48, th.spacing.lg]}
+              width={[th.sizes.fill, 'auto']}
+            >
               <SocialIcons inverted />
-            </l.Div>
+            </l.Flex>
           </l.Div>
         </l.Flex>
-        <l.Flex mt={th.spacing.lg}>
-          <l.Flex column alignStart mr={th.spacing.xl}>
+        <l.Flex mt={[48, th.spacing.lg]}>
+          <l.Flex column alignStart mr={[th.spacing.lg, th.spacing.xl]}>
             <l.Div
               bdb={th.borders.white}
               mb={th.spacing.lg}
@@ -96,19 +111,19 @@ const Footer = () => (
             >
               <ty.LargeText inverted>Services</ty.LargeText>
             </l.Div>
-            <l.AreaLink to="/services">
+            <l.AreaLink to="/services?id=full-service">
               <ty.CaptionText inverted secondary>
                 Full Service Production
               </ty.CaptionText>
             </l.AreaLink>
             <l.Div height={th.spacing.md} />
-            <l.AreaLink to="/services">
+            <l.AreaLink to="/services?id=small-business">
               <ty.CaptionText inverted secondary>
                 Small Business Package
               </ty.CaptionText>
             </l.AreaLink>
             <l.Div height={th.spacing.md} />
-            <l.AreaLink to="/services">
+            <l.AreaLink to="/services?id=graphic-design">
               <ty.CaptionText inverted secondary>
                 Graphic & Logo Design
               </ty.CaptionText>
@@ -136,7 +151,7 @@ const Footer = () => (
               </ty.CaptionText>
             </l.AreaLink>
             <l.Div height={th.spacing.md} />
-            <l.AreaLink to="/about-us">
+            <l.AreaLink to="/about-us?id=team">
               <ty.CaptionText inverted secondary>
                 Our Team
               </ty.CaptionText>
@@ -171,7 +186,7 @@ const Footer = () => (
           bottom={0}
           position="absolute"
           left="50%"
-          transform="translateX(-50%)"
+          transform={isMobile() ? 'translate(-50%, -96px)' : 'translateX(-50%)'}
         >
           <l.Img height={109} src={SecondaryLogoImg} />
         </l.Div>

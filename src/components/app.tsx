@@ -9,41 +9,43 @@ import {
 } from 'react-router-dom';
 
 import CTABanner from 'components/cta-banner';
-import Footer from 'components/footer';
+import Footer from 'components/page/footer';
 import Nav from 'components/nav';
 import { GlobalContextProvider } from 'context/global';
+import AboutUs from 'routes/about-us';
+import Contact from 'routes/contact';
 import Home from 'routes/home';
+import Portfolio from 'routes/portfolio';
+import Services from 'routes/services';
 import Global from 'ui/global';
 import l from 'ui/layout';
 import th from 'ui/theme';
-import AboutUs from 'routes/about-us';
-import Services from 'routes/services';
-import Portfolio from 'routes/portfolio';
-import Contact from 'routes/contact';
 
 const Main = styled(l.Flex)({
   flexDirection: 'column',
   minHeight: '100vh',
-  paddingTop: th.heights.nav,
+  width: th.sizes.fill,
 });
 
 const App = () => (
   <Router>
     <GlobalContextProvider>
       <ThemeProvider theme={th}>
-        <Main id="top">
+        <Main id="main">
           <Nav />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/services" component={Services} />
-            <Route exact path="/about-us" component={AboutUs} />
-            <Route exact path="/portfolio" component={Portfolio} />
-            <Route exact path="/portfolio/:category" component={Portfolio} />
-            <Route exact path="/contact" component={Contact} />
-            <Redirect to="/" />
-          </Switch>
-          <CTABanner />
-          <Footer />
+          <l.Div id="wrap">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/services" component={Services} />
+              <Route exact path="/about-us" component={AboutUs} />
+              <Route exact path="/portfolio" component={Portfolio} />
+              <Route exact path="/portfolio/:category" component={Portfolio} />
+              <Route exact path="/contact" component={Contact} />
+              <Redirect to="/" />
+            </Switch>
+            <CTABanner />
+            <Footer />
+          </l.Div>
         </Main>
         <Global />
       </ThemeProvider>

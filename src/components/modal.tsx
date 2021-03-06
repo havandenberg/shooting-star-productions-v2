@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 
 import th from 'ui/theme';
+import { isMobile } from 'ui/utils';
 
 interface Props {
   children: React.ReactNode;
@@ -31,10 +32,11 @@ const Modal = ({ children, trigger }: Props) => {
           },
           content: {
             inset: 0,
+            left: isMobile() ? 0 : '40px',
             overflow: 'hidden',
             position: 'relative',
             padding: 0,
-            width: '90%',
+            width: isMobile() ? th.sizes.fill : '90%',
           },
         }}
       >

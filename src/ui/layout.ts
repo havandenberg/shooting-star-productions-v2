@@ -173,6 +173,9 @@ const PageContent = styled(Div)(
   {
     margin: `${th.spacing.xl} auto`,
     maxWidth: th.widths.maxContent,
+    [th.breakpointQueries.small]: {
+      margin: `${th.spacing.lg} ${th.spacing.md}`,
+    },
   },
   divPropsSet,
 );

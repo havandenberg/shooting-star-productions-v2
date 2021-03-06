@@ -3,14 +3,14 @@ import React from 'react';
 import l from 'ui/layout';
 import th from 'ui/theme';
 import ty from 'ui/typography';
-import { scrollToId } from 'ui/utils';
+import { isMobile, scrollToId } from 'ui/utils';
 
 interface Props {
   items: { id: string; text: string }[];
 }
 
-const PageNav = ({ items }: Props) => (
-  <l.Flex height={th.spacing.xxl} mb={th.spacing.xl}>
+const PageLinks = ({ items }: Props) => (
+  <l.Flex height={th.spacing.xl} mb={[th.spacing.lg, th.spacing.xl]}>
     {items.map(({ id, text }) => (
       <l.Flex
         alignCenter
@@ -22,10 +22,15 @@ const PageNav = ({ items }: Props) => (
           scrollToId(id);
         }}
       >
-        <ty.LargeText>{text}</ty.LargeText>
+        <ty.LargeText
+          center={isMobile()}
+          fontSize={[th.fontSizes.body, th.fontSizes.large]}
+        >
+          {text}
+        </ty.LargeText>
       </l.Flex>
     ))}
   </l.Flex>
 );
 
-export default PageNav;
+export default PageLinks;

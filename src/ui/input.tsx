@@ -11,6 +11,7 @@ import {
 } from 'onno-react';
 
 import th from 'ui/theme';
+import { hexColorWithTransparency } from 'ui/utils';
 
 const inputStyles: any = {
   background: th.colors.white,
@@ -25,16 +26,16 @@ const inputStyles: any = {
   width: th.sizes.fill,
   ':hover': {
     '::placeholder': {
-      color: th.colors.brand.secondary,
+      color: th.colors.black,
     },
   },
   '::placeholder': {
-    color: th.colors.brand.secondaryDisabled,
+    color: hexColorWithTransparency('#000000', 0.6),
     transition: th.transitions.default,
   },
   ':focus': {
     '::placeholder': {
-      color: th.colors.brand.secondary,
+      color: th.colors.black,
     },
   },
 };

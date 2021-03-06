@@ -6,32 +6,54 @@ import l from 'ui/layout';
 import th from 'ui/theme';
 import ty from 'ui/typography';
 
-const Hero = ({ home, text }: { home?: boolean; text: string }) => (
+const Hero = ({
+  home,
+  imageSrc,
+  text,
+}: {
+  home?: boolean;
+  imageSrc?: string;
+  text: string;
+}) => (
   <>
-    <l.Div bg={th.colors.black} height={th.spacing.sm} width={th.sizes.fill} />
     <l.Div
-      height={home ? 650 : 350}
+      height={home ? [400, 800] : [300, 450]}
       overflow="hidden"
       position="relative"
       width={th.sizes.fill}
     >
-      {home && (
-        <l.Div
-          bottom="-8px"
-          left={0}
-          right={0}
-          position="absolute"
-          top="-8px"
-          zIndex={1}
-        >
-          <video autoPlay loop muted preload="true" height="100%" width="100%">
+      <l.Div
+        bottom="-8px"
+        left={0}
+        right={0}
+        position="absolute"
+        top="-8px"
+        zIndex={1}
+      >
+        {home ? (
+          <video
+            autoPlay
+            webkit-playsinline
+            playsInline
+            loop
+            muted
+            preload="true"
+            height="100%"
+            width="100%"
+          >
             <source src={`${ASSETS_PATH}/intro.m4v`} type="video/mp4" />
           </video>
-        </l.Div>
-      )}
+        ) : (
+          imageSrc && (
+            <l.Flex justifyCenter>
+              <l.Img height={th.sizes.fill} src={imageSrc} />
+            </l.Flex>
+          )
+        )}
+      </l.Div>
       <l.Flex
         alignCenter
-        bg={th.colors.overlay.dark}
+        bg={th.colors.overlay.medium}
         bottom={0}
         column
         justifyCenter
@@ -43,8 +65,13 @@ const Hero = ({ home, text }: { home?: boolean; text: string }) => (
       >
         <ty.HugeText
           fontFamily={th.fontFamilies.title}
-          fontSize={home ? th.fontSizes.display : th.fontSizes.huge}
+          fontSize={
+            home
+              ? [th.fontSizes.large, th.fontSizes.display]
+              : th.fontSizes.huge
+          }
           inverted
+          mt={home ? th.spacing.xl : th.spacing.xxl}
           secondary
         >
           {text}
@@ -53,7 +80,7 @@ const Hero = ({ home, text }: { home?: boolean; text: string }) => (
           <>
             <ty.HugeText
               fontFamily={th.fontFamilies.title}
-              fontSize={64}
+              fontSize={[th.fontSizes.display, 64]}
               inverted
               mt={th.spacing.md}
             >
@@ -68,8 +95,8 @@ const Hero = ({ home, text }: { home?: boolean; text: string }) => (
               <l.AreaLink to="/about-us">
                 <b.Primary
                   fontSize={th.fontSizes.large}
-                  height={60}
-                  width={150}
+                  height={[50, 60]}
+                  width={[125, 150]}
                 >
                   About Us
                 </b.Primary>
@@ -78,8 +105,8 @@ const Hero = ({ home, text }: { home?: boolean; text: string }) => (
               <l.AreaLink to="/portfolio">
                 <b.SecondaryWhite
                   fontSize={th.fontSizes.large}
-                  height={60}
-                  width={150}
+                  height={[50, 60]}
+                  width={[125, 150]}
                 >
                   Portfolio
                 </b.SecondaryWhite>
@@ -89,7 +116,7 @@ const Hero = ({ home, text }: { home?: boolean; text: string }) => (
         )}
       </l.Flex>
     </l.Div>
-    <l.Div bg={th.colors.black} height={th.spacing.sm} width={th.sizes.fill} />
+    <l.Div bg={th.colors.black} height={th.spacing.xs} width={th.sizes.fill} />
   </>
 );
 

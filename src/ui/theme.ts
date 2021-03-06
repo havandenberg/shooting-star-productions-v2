@@ -2,6 +2,7 @@ import './fonts.css';
 import {
   DESKTOP,
   hexColorWithTransparency,
+  isMobile,
   SMALL,
   TABLET,
   TABLET_DOWN,
@@ -19,7 +20,7 @@ export const colors = {
   brand: {
     primary: '#E2AA39',
     secondary: '#2C5F95',
-    secondaryDisabled: '#2C5F95',
+    secondaryAccent: '#233777',
   },
   text: {
     default: hexColorWithTransparency('#000000', 0.8),
@@ -41,7 +42,7 @@ export const colors = {
 // Layout
 export const heights = {
   input: 40,
-  nav: 116,
+  nav: isMobile() ? 82 : 116,
 };
 
 export const sizes = {
@@ -133,7 +134,7 @@ export const transitions = {
 
 export const scrollOptions = {
   duration: 300,
-  offset: -200,
+  offset: isMobile() ? -120 : -200,
   smooth: 'true',
 };
 
