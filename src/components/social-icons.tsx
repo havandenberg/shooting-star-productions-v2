@@ -7,7 +7,7 @@ import th from 'ui/theme';
 import { hexColorWithTransparency } from 'ui/utils';
 
 const INSTAGRAM_PATH = 'https://www.instagram.com/shootingstar.us';
-const YOUTUBE_PATH = 'https://www.youtube.com/user/nicolasandrews95';
+const YOUTUBE_PATH = 'https://youtube.com/channel/UCqO6_CXzaPUFCLqbuoQJkDg';
 
 const SocialIcons = ({
   gap = th.spacing.md,

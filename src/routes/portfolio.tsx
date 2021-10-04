@@ -1,11 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import styled from '@emotion/styled';
 import { capitalCase, paramCase } from 'change-case';
 import { pluck, uniq } from 'ramda';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { ASSETS_PATH } from 'api';
-import PlayImg from 'assets/images/play';
+import CoverImg from 'assets/images/cover-2.jpg';
 import Heading from 'components/heading';
 import Hero from 'components/page/hero';
 import Modal from 'components/modal';
@@ -54,22 +53,19 @@ export const NavItem = ({ active, text, to }: NavItemProps) => (
 export interface PortfolioItem {
   id: string;
   category: string;
-  posterSrc: string;
+  frame?: number;
   videoSrc: string;
   title: string;
 }
 
 export const PortfolioTile = ({
   category,
-  posterSrc,
+  frame = 1,
   title,
   videoSrc,
 }: PortfolioItem) => {
   useScroll();
-  const [hover, setHover] = useState(false);
-  const toggleHover = (value: boolean) => () => {
-    setHover(value);
-  };
+  const { category: categoryParam } = useParams<{ category?: string }>();
   return (
     <Modal
       trigger={(show) => (
@@ -82,39 +78,29 @@ export const PortfolioTile = ({
           height={275}
           mb={th.spacing.lg}
           onClick={show}
-          onMouseEnter={toggleHover(true)}
-          onMouseLeave={toggleHover(false)}
           overflow="hidden"
           width={[th.sizes.fill, 287]}
         >
-          <l.Div flex={1} mb={th.spacing.md} position="relative">
-            <l.Img src={posterSrc} width={th.sizes.fill} />
-            <l.Flex
-              alignCenter
-              bg={th.colors.overlay.medium}
-              bottom={0}
-              justifyCenter
-              left={0}
-              opacity={hover ? 1 : 0}
-              position="absolute"
-              right={0}
-              top={0}
-              transition={th.transitions.default}
-              zIndex={2}
+          <video preload="metadata" height="100%" width="100%">
+            <source src={`${videoSrc}#t=${frame}`} type="video/mp4" />
+          </video>
+          <l.Flex alignCenter column height={80} justifyCenter>
+            <ty.LargeText
+              center
+              mb={!!categoryParam ? th.spacing.sm : th.spacing.md}
             >
-              <PlayImg height={th.sizes.md} />
-            </l.Flex>
-          </l.Div>
-          <ty.LargeText center mb={th.spacing.md}>
-            {title}
-          </ty.LargeText>
-          <ty.BodyText center disabled mb={24}>
-            {category}
-          </ty.BodyText>
+              {title}
+            </ty.LargeText>
+            {!categoryParam && (
+              <ty.BodyText center disabled mb={24}>
+                {category}
+              </ty.BodyText>
+            )}
+          </l.Flex>
         </l.Flex>
       )}
     >
-      <video autoPlay controls preload="true" height="100%" width="100%">
+      <video autoPlay controls height="100%" width="100%">
         <source src={videoSrc} type="video/mp4" />
       </video>
     </Modal>
@@ -143,7 +129,7 @@ const Portfolio = () => {
   );
   return (
     <l.Div>
-      <Hero imageSrc={`${ASSETS_PATH}/events.png`} text="Portfolio" />
+      <Hero imageSrc={CoverImg} text="Portfolio" />
       <l.PageContent>
         <PageNav items={navItems} />
         <l.Flex flexWrap="wrap" id="recent-work" mb={[th.spacing.md, 0]}>

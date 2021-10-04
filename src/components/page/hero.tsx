@@ -1,6 +1,5 @@
-import { ASSETS_PATH } from 'api';
 import React from 'react';
-
+import { ASSETS_PATH } from 'api';
 import b from 'ui/button';
 import l from 'ui/layout';
 import th from 'ui/theme';
@@ -17,7 +16,7 @@ const Hero = ({
 }) => (
   <>
     <l.Div
-      height={home ? [400, 800] : [300, 450]}
+      height={home ? [400, 670] : [300, 450]}
       overflow="hidden"
       position="relative"
       width={th.sizes.fill}
@@ -41,7 +40,7 @@ const Hero = ({
             height="100%"
             width="100%"
           >
-            <source src={`${ASSETS_PATH}/intro.m4v`} type="video/mp4" />
+            <source src={`${ASSETS_PATH}/v2/AD-hero.mp4`} type="video/mp4" />
           </video>
         ) : (
           imageSrc && (
@@ -92,13 +91,13 @@ const Hero = ({
               width={th.spacing.xxl}
             />
             <l.Flex mt={th.spacing.md}>
-              <l.AreaLink to="/about-us">
+              <l.AreaLink to="/services">
                 <b.Primary
                   fontSize={th.fontSizes.large}
                   height={[50, 60]}
                   width={[125, 150]}
                 >
-                  About Us
+                  Services
                 </b.Primary>
               </l.AreaLink>
               <l.Div width={th.spacing.lg} />

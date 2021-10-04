@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 
 import { ASSETS_PATH } from 'api';
+import CoverImg from 'assets/images/cover-3.jpg';
+import ProfileImg from 'assets/images/profile.jpg';
 import Heading from 'components/heading';
 import Hero from 'components/page/hero';
 import PageNav from 'components/page/links';
@@ -28,7 +30,7 @@ const AboutUs = () => {
   useScroll();
   return (
     <l.Div>
-      <Hero imageSrc={`${ASSETS_PATH}/events.png`} text="About Us" />
+      <Hero imageSrc={CoverImg} text="About Us" />
       <l.PageContent>
         <PageNav items={navItems} />
         <Heading id="principles" text="Principles Of Our Work" />
@@ -66,10 +68,7 @@ const AboutUs = () => {
             </ty.ContentText>
           </l.Div>
           <l.Div mt={[th.spacing.xl, 0]} width={[th.sizes.fill, '45%']}>
-            <l.Img
-              src={`${ASSETS_PATH}/nic.png`}
-              width={[th.sizes.fill, '80%'] as any}
-            />
+            <l.Img src={ProfileImg} width={[th.sizes.fill, '80%'] as any} />
             <ty.LargeText bold mt={th.spacing.xl}>
               Innovation
             </ty.LargeText>

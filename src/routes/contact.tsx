@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ASSETS_PATH } from 'api';
+import CoverImg from 'assets/images/cover-7.png';
 import EmailImg from 'assets/images/email';
 import HoursImg from 'assets/images/hours';
 import LocationImg from 'assets/images/location.png';
@@ -19,7 +19,7 @@ const Contact = () => {
   useScroll();
   return (
     <l.Div>
-      <Hero imageSrc={`${ASSETS_PATH}/events.png`} text="Contact Us" />
+      <Hero imageSrc={CoverImg} text="Contact Us" />
       <l.PageContent>
         <l.Flex columnOnMobile justifyBetween>
           <l.Flex alignCenter column width={[th.sizes.fill, '50%']}>
