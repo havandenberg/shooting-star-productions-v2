@@ -165,6 +165,18 @@ const portfolio: PortfolioItem[] = [
     title: 'Mercure',
   },
   {
+    id: 'hotels-2',
+    category: 'Hotels',
+    videoSrc: `${ASSETS_PATH}/v2/Hotels/Resort 1.mp4`,
+    title: 'Resort 1',
+  },
+  {
+    id: 'hotels-3',
+    category: 'Hotels',
+    videoSrc: `${ASSETS_PATH}/v2/Hotels/Resort 2.mp4`,
+    title: 'Resort 2',
+  },
+  {
     id: 'personal-fitness-1',
     category: 'Personal Fitness',
     videoSrc: `${ASSETS_PATH}/v2/Personal Fitness/Personal Fitness.mp4`,
