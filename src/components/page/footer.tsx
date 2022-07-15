@@ -74,7 +74,7 @@ const Footer = () => (
                 target="_blank"
               >
                 <ty.BodyText inverted secondary>
-                  Worcester, MA
+                  Worcester, MA & Orlando, FL
                 </ty.BodyText>
               </l.Anchor>
             </l.Flex>

@@ -19,7 +19,7 @@ const Home = () => {
       <Hero home text="Turn Your" />
       <l.PageContent position="relative">
         <l.Div position="relative" zIndex={2}>
-          <Heading text="The Best Videography & Photography In Massachusetts" />
+          <Heading text="The Best Videography & Photography In Massachusetts & Florida" />
           <l.Flex
             columnOnMobile
             justifyBetween
@@ -27,12 +27,12 @@ const Home = () => {
             mt={[th.spacing.lg, th.spacing.xl]}
           >
             <ty.ContentText width={['auto', '60%']}>
-              When it comes to Video and Photo Production in Massachusetts, our
-              team at Shooting Star Production we specialize in our clients
-              retell that history in an interactive and exciting way in helping
-              customers through video. Our team utilizes the latest tools and
-              technology to make sure that we always get the right shot and that
-              the final product is the best possible.
+              When it comes to Video and Photo Production in Massachusetts &
+              Florida, our team at Shooting Star Production we specialize in our
+              clients retell that history in an interactive and exciting way in
+              helping customers through video. Our team utilizes the latest
+              tools and technology to make sure that we always get the right
+              shot and that the final product is the best possible.
             </ty.ContentText>
             <l.Div
               ml={[th.spacing.md, 0]}
