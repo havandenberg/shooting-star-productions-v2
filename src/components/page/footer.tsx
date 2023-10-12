@@ -93,7 +93,6 @@ const Footer = () => (
               </ty.BodyText>
             </l.Flex>
             <l.Flex
-              justifyCenter
               mt={[48, th.spacing.lg]}
               width={[th.sizes.fill, 'auto']}
             >
